@@ -9,7 +9,7 @@ import botImg from "../Assets/botImg.JPG"
 function signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState("");
+  const [name, setName] = useState(""); 
 
   //image upload states
   const [image, setImage] = useState(null);
@@ -95,4 +95,4 @@ function signup() {
   );
 }
 
-export default signup
+export default signup     
