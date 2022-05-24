@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {isEmail} = require('validator');
+const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
@@ -13,9 +13,9 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Can't be blank"],
         index: true,
-        validate: [isEmail,"invalid email"]
+        validate: [isEmail, "invalid email"]
     },
-    password:{
+    password: {
         type: String,
         required: [true, "Can't be blank"]
     },
@@ -29,8 +29,8 @@ const UserSchema = new mongoose.Schema({
     status: {
         type: String,
         default: 'online'
-    }   
-}, {minimize: false});
+    }
+}, { minimize: false });
 
 UserSchema.pre('save', function(next){
     const user = this;
@@ -38,7 +38,7 @@ UserSchema.pre('save', function(next){
 
     bcrypt.genSalt(10, function(err, salt){
         if(err) return next(err);
-        
+
         bcrypt.hash(user.password, salt, function(err, hash){
             if(err) return next(err);
 
@@ -46,10 +46,9 @@ UserSchema.pre('save', function(next){
             next();
         })
     })
-
 })
 
-UserSchema.methods.toJSON = function(){
+UserSchema.method.toJSON = function(){
     const user = this;
     const userObject = user.toObject();
     delete userObject.password;
@@ -66,4 +65,7 @@ UserSchema.statics.findByCredentials = async function(email, password){
 }
 
 const User = mongoose.model('User', UserSchema);
+
 module.exports = User
+
+// left 1:24:55

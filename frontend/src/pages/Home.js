@@ -22,9 +22,3 @@ function Home() {
 }
 
 export default Home
-
-/*
-https://www.youtube.com/watch?v=qdZYHbg72WQ
-
-left at 56:42
-*/

@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const { json } = require('body-parser');
+const { resolveSoa } = require('dns');
 const User = require('../models/User');
 
 // creating user
@@ -20,10 +22,10 @@ router.post('/', async(req, res)=> {
     }
 })
 
-//login user
+// login user
 
-router.post('/login', async(req, res)=>{
-    try{
+router.post('/login', async(req, res)=> {
+    try {
         const {email, password} = req.body;
         const user = await User.findByCredentials(email, password);
         user.status = 'online';
@@ -34,4 +36,4 @@ router.post('/login', async(req, res)=>{
     }
 })
 
-module.exports = router 
+module.exports = router
